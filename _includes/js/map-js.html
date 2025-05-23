@@ -144,12 +144,18 @@
         {% endif %}{% endfor %}
         /* add object link button to popup */
         popupTemplate += '</p><div class="text-center"><a class="btn btn-light" href="' + itemHref + '" >View Item</a></div>';
+            var historicMarker = L.icon({
+                iconUrl:'../assets/img/historic_marker.png' ,
+                iconSize: [30,45],
+                iconAnchor: [10,30],
+                popupAnchor: [10,0]
+            });
         /* add object popup to map layer */
         layer.bindPopup(popupTemplate);
     }
     /* function to add objects to map */
     function objectMarkers(feature,latlng) {
-        var marker = L.marker(latlng, {alt: feature.properties.title});
+        var marker = new L.marker(latlng, icon: historicMarker {alt: feature.properties.title});
         {% if site.data.theme.map-cluster == true %}markers.addLayer(marker);{% endif %}
         return marker;
     }
